@@ -86,8 +86,8 @@ public class App {
 
         int index = getIndexofsetNumberArrayById(id);
 
-        if (index == -1){
-            System.out.printf("%d번 명언은 존재하지 않습니다.\n",id);
+        if (index == -1) {
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
             return; // 리턴 빼서 오류남
         }
 
@@ -114,7 +114,26 @@ public class App {
             System.out.println("id를 정확히 입력해주세요.");
             return;
         }
-        System.out.printf("%d번 명언을 수정합니다.\n", id);
+
+        int index = getIndexofsetNumberArrayById(id);
+
+        if (index == -1) {
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+            return;
+        }
+        SetNumber3 setNumber3 = setNumberArray.get(index);
+        System.out.printf("명언(기존): %s\n", setNumber3.content);
+        System.out.print("명언 : ");
+        String content = scanner.nextLine();
+
+        System.out.printf("작가(기존): %s\n", setNumber3.author);
+        System.out.print("작가 : ");
+        String author = scanner.nextLine();
+
+        setNumber3.content = content;
+        setNumber3.author = author;
+
+        System.out.printf("%d번 명언이 수정되었습니다.\n", id);
     }
 
 }
