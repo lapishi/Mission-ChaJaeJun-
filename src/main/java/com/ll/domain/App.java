@@ -1,21 +1,21 @@
-package com.ll;
+package com.ll.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    Scanner scanner;
-    int setNumber;
-    List<SetNumber3> setNumberArray;
+    private final Scanner scanner;
+    private int setNumber;
+    private final List<SetNumber3> setNumberArray;
 
-    App() {
+    public App() {
         scanner = new Scanner(System.in);
         setNumber = 0;
         setNumberArray = new ArrayList<>();
     }
 
-    void run() {
+    public void run() {
         System.out.println("== 명언 앱 ==");
 
 
@@ -45,7 +45,7 @@ public class App {
         }
     }
 
-    void actionWrite() {
+    private void actionWrite() {
         System.out.print("명언 : ");
         String content = scanner.nextLine();
 
@@ -63,7 +63,7 @@ public class App {
 
     }
 
-    void actionList() {
+    private void actionList() {
         System.out.println("번호 / 작가 / 명언" + "\n ------------------");
 
         if (setNumberArray.isEmpty()) System.out.println("등록된 명언이 없습니다.");
@@ -75,7 +75,7 @@ public class App {
         }
     }
 
-    void actionRemove(Rq rq) {
+    private void actionRemove(Rq rq) {
         int id = rq.getParamAsInt("id", 0);
 
         if (id == 0) {
@@ -96,7 +96,7 @@ public class App {
         System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
 
-    int getIndexofsetNumberArrayById(int id) {
+    private int getIndexofsetNumberArrayById(int id) {
         for (int i = 0; i < setNumberArray.size(); i++) {
             SetNumber3 setNumber3 = setNumberArray.get(i);
 
@@ -107,7 +107,7 @@ public class App {
         return -1;
     }
 
-    void actionModify(Rq rq) {
+    private void actionModify(Rq rq) {
         int id = rq.getParamAsInt("id", 0);
 
         if (id == 0) {
