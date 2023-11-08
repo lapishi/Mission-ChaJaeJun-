@@ -70,7 +70,7 @@ public class App {
 
         for (int i = setNumberArray.size() - 1; i >= 0; i--) {
             SetNumber3 setNumber3 = setNumberArray.get(i);
-            System.out.printf("%d / %s / %s\n", setNumber3.id, setNumber3.author, setNumber3.content);
+            System.out.printf("%d / %s / %s\n", setNumber3.getId(), setNumber3.getAuthor(), setNumber3.getContent());
 
         }
     }
@@ -100,7 +100,7 @@ public class App {
         for (int i = 0; i < setNumberArray.size(); i++) {
             SetNumber3 setNumber3 = setNumberArray.get(i);
 
-            if (setNumber3.id == id) {
+            if (setNumber3.getId() == id) {
                 return i;
             }
         }
@@ -122,16 +122,16 @@ public class App {
             return;
         }
         SetNumber3 setNumber3 = setNumberArray.get(index);
-        System.out.printf("명언(기존): %s\n", setNumber3.content);
+        System.out.printf("명언(기존): %s\n", setNumber3.getContent());
         System.out.print("명언 : ");
         String content = scanner.nextLine();
 
-        System.out.printf("작가(기존): %s\n", setNumber3.author);
+        System.out.printf("작가(기존): %s\n", setNumber3.getAuthor());
         System.out.print("작가 : ");
         String author = scanner.nextLine();
 
-        setNumber3.content = content;
-        setNumber3.author = author;
+        setNumber3.setContent(content);
+        setNumber3.setAuthor(author);
 
         System.out.printf("%d번 명언이 수정되었습니다.\n", id);
     }

@@ -2,14 +2,15 @@ package com.ll.domain;
 
 import com.ll.standard.util.Ut;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Rq {
-    private String line;
-    private String action;
-    private String queryString;
-    private Map<String, String> paramsMap;
+    private final String line;
+    private final String action;
+    public String queryString;
+    private final Map<String, String> paramsMap;
 
     public Rq(String line) {
         paramsMap = new HashMap<>();
@@ -25,15 +26,14 @@ public class Rq {
         queryString = lineBits[1].trim();
         String[] queryStringBits = queryString.split("&");
 
-        for (int i = 0; i < queryStringBits.length; i++) {
-            String queryParamStr = queryStringBits[i];
-            String[] queryParamStrBits = queryParamStr.split("=", 2);
-
-            String paramName = queryParamStrBits[0];
-            String paramValue = queryParamStrBits[1];
-
-            paramsMap.put(paramName, paramValue);
-        }
+        Arrays.stream(queryStringBits)
+                .map(queryParamStr -> queryParamStr.split("=", 2))
+                .filter(queryParamStrBits -> queryParamStrBits.length == 2)
+                .forEach(queryParamStrBits -> {
+                    String paramName = queryParamStrBits[0];
+                    String paramValue = queryParamStrBits[1];
+                    paramsMap.put(paramName, paramValue);
+                });
     }
 
     public String getAction() {
@@ -43,4 +43,6 @@ public class Rq {
     public int getParamAsInt(String paramName, int defaultValue) {
         return Ut.str.parseInt(paramsMap.get(paramName), defaultValue);
     }
+
+
 }
