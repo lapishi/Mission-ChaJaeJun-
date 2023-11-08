@@ -82,7 +82,7 @@ public class App {
             System.out.println("id를 정확히 입력해주세요");
             return;
         }
-        System.out.printf("%d번 명언을 삭제합니다.\n", id);
+        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
 
     void actionModify(Rq rq) {

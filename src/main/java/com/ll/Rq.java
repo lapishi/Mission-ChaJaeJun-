@@ -15,6 +15,11 @@ public class Rq {
         this.line = line;
         String[] lineBits = line.split("\\?", 2);
         action = lineBits[0].trim();
+
+        if(lineBits.length == 1){ //ArrayIndexOutOfBoundsException 에러 방지용
+            return;
+        }
+
         queryString = lineBits[1].trim();
         String[] queryStringBits = queryString.split("&");
 
