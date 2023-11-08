@@ -82,7 +82,29 @@ public class App {
             System.out.println("id를 정확히 입력해주세요");
             return;
         }
+
+
+        int index = getIndexofsetNumberArrayById(id);
+
+        if (index == -1){
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n",id);
+            return; // 리턴 빼서 오류남
+        }
+
+        setNumberArray.remove(index);
+
         System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+    }
+
+    int getIndexofsetNumberArrayById(int id) {
+        for (int i = 0; i < setNumberArray.size(); i++) {
+            SetNumber3 setNumber3 = setNumberArray.get(i);
+
+            if (setNumber3.id == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     void actionModify(Rq rq) {
